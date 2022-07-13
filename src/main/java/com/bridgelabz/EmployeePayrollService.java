@@ -38,24 +38,26 @@ public class EmployeePayrollService {
     public void writeEmployeePayrollDara(IOService ioService) {
         if (ioService.equals(IOService.CONSOLE_IO))
             System.out.println("\n writing Employee Payroll Roaster to console \n" + employeePayrollList);
-        else if (ioService.equals(IOService.FILE_IO))
-            new EmployeePayrollFileIOService().writeData(employeePayrollList);
+        else if (ioService.equals(IOService.FILE_IO)) new EmployeePayrollFileIOService().writeData(employeePayrollList);
     }
 
 
     public long countEntries(IOService ioService) {
-        if (ioService.equals(IOService.FILE_IO))
-            return new EmployeePayrollFileIOService().countEntries();
+        if (ioService.equals(IOService.FILE_IO)) return new EmployeePayrollFileIOService().countEntries();
         return 0;
     }
 
     public void printData(IOService ioService) {
-        if (ioService.equals(IOService.FILE_IO))
-            new EmployeePayrollFileIOService().printData();
+        if (ioService.equals(IOService.FILE_IO)) new EmployeePayrollFileIOService().printData();
     }
+
+    public long readEmployeePayroll(IOService ioService) {
+        if (ioService.equals(IOService.FILE_IO))
+            this.employeePayrollList = new EmployeePayrollFileIOService().readData();
+        return employeePayrollList.size();
+    }
+
     public enum IOService {CONSOLE_IO, FILE_IO, DB_IO, REST_ID}
 }
-
-
 
 
